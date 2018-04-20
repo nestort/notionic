@@ -8,11 +8,13 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 
 import {NotasService} from '../services/notas.service';
+import { DetallePage } from '../pages/detalle/detalle';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    DetallePage
   ],
   imports: [
     BrowserModule,
@@ -21,7 +23,8 @@ import {NotasService} from '../services/notas.service';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    DetallePage
   ],
   providers: [
     StatusBar,
