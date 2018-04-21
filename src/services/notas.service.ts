@@ -26,17 +26,9 @@ export class NotasService {
         //this.notas.push(nota);
     }
     public editNota(nota) {
-        for (let i = 0; i < this.notas.length; i++) {
-            if (nota.id == this.notas[i].id) {
-                this.notas[i] = nota;
-            }
-        }
+        this.afDB.database.ref('notas/'+nota.id).set(nota);
     }
     public deleteNota(idnota) {
-        for (let i = 0; i < this.notas.length; i++) {
-            if (idnota == this.notas[i].id) {
-                this.notas.splice(i, 1);
-            }
-        }
+        this.afDB.database.ref('notas/'+idnota).remove();
     }
 }

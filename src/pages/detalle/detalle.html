@@ -12,10 +12,10 @@
 
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="show">
   <ion-list>
 
-    <ion-item>
+    <ion-item  >
       <ion-label floating>Titulo</ion-label>
       <ion-input type="text" [(ngModel)]="nota.titulo"></ion-input>
     </ion-item>
