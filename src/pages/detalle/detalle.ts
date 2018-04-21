@@ -19,26 +19,31 @@ export class DetallePage {
   nota={id:null,titulo:null,descripcion:null};
   constructor(public navCtrl: NavController, public navParams: NavParams,public notasService:NotasService,public alertCtrl: AlertController) {    
     this.id=navParams.get('id');    
-    if(this.id==0){
-
-    }else{      
-      this.nota=notasService.getNota(this.id);        
-    }    
+    if(this.id!=0){
+      this.nota=notasService.getNota(this.id);
+    }  
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetallePage');
   }
-  nuevaNota(){
-    this.nota.id=Date.now();
-    this.notasService.createNota(this.nota);
+  guardarNota(){
+    if(this.nota.id!=0){
+      this.notasService.editNota(this.nota);
+      this.showAlertCreacion('¡Nota editada!','Se ha editado con exito '+this.nota.titulo);
+    }else{
+      this.nota.id=Date.now();
+      this.notasService.createNota(this.nota);
+      this.showAlertCreacion('¡Nueva nota!','Se ha creado con exito '+this.nota.titulo);
+    }
+    
     this.navCtrl.pop();
-    this.showAlert(this.nota.titulo);
+    
   }
-  showAlert(titulo) {
+  showAlertCreacion(titulo,contenido) {
     let alert = this.alertCtrl.create({
-      title: '¡Nueva nota!',
-      subTitle: 'Se ha creado con exito '+titulo,
+      title: titulo,
+      subTitle: contenido,
       buttons: ['OK']
     });
     alert.present();

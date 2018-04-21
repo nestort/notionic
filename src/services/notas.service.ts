@@ -16,4 +16,11 @@ export class NotasService{
     public createNota(nota){
         this.notas.push(nota);
     }
+    public editNota(nota){
+        for(let i=0;i<this.notas.length;i++){
+            if(nota.id==this.notas[i].id){
+                this.notas[i]=nota;
+            }
+        }
+    }
 }
