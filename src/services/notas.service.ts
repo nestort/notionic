@@ -10,4 +10,7 @@ export class NotasService{
     public getNotas(){
         return this.notas;
     }
+    public getNota(id){
+        return this.notas.filter(function(e,i){return e.id==id})[0]||{id:null,titulo:null,descripcion:null};
+    }
 }

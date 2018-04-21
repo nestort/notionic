@@ -12,12 +12,9 @@ export class HomePage {
   @ViewChild ('myNav') nav:NavController
   constructor(public navCtrl: NavController,public notasService:NotasService ) {
     this.notas=notasService.getNotas();
-  }
-  public itemSelected(item:any){
-    
-  }
-  public goToDetalle(){
-    this.navCtrl.push(DetallePage);
+  } 
+  public goToDetalle(id){
+    this.navCtrl.push(DetallePage,{id:id});    
   }
 
 }
