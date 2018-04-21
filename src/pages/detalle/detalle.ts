@@ -14,13 +14,25 @@ import { NotasService } from '../../services/notas.service';
   selector: 'page-detalle',
   templateUrl: 'detalle.html',
 })
-export class DetallePage {
-  id=null;
+export class DetallePage {  
   nota={id:null,titulo:null,descripcion:null};
+  id=null;
   constructor(public navCtrl: NavController, public navParams: NavParams,public notasService:NotasService,public alertCtrl: AlertController) {    
     this.id=navParams.get('id');    
     if(this.id!=0){
-      this.nota=notasService.getNota(this.id);
+      //this.nota=notasService.getNota(this.id).then(function(snapshot){
+        //this.nota=snapshot.val();
+        //this.nota=snapshot.val().get();
+        //this.id=1;
+        this.notasService.getNota(this.id).valueChanges().subscribe(nota=>{
+          this.nota=nota;
+        });
+        
+        
+        
+      //}
+        //this.nota=nota;
+      
     }  
   }
 

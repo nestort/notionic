@@ -1,32 +1,41 @@
-import {Injectable} from '@angular/core';
+import {IonicApp, IonicModule} from 'ionic-angular'; 
+import { Injectable } from '@angular/core';
+import { AngularFireDatabase } from 'angularfire2/database';
+
 
 @Injectable()
-export class NotasService{
-    notas=[
-        {id:1,titulo:'titulo 1',descripcion:'descripcion de la nota 1'},
-        {id:2,titulo:'titulo 2',descripcion:'descripcion de la nota 2'},
-        {id:3,titulo:'titulo 3',descripcion:'descripcion de la nota 3'}
-      ];
-    public getNotas(){
-        return this.notas;
+export class NotasService {
+    constructor(public afDB: AngularFireDatabase) {
+
     }
-    public getNota(id){
-        return this.notas.filter(function(e,i){return e.id==id})[0]||{id:null,titulo:null,descripcion:null};
+    notas = [];
+
+    
+
+    public getNotas() {
+        //return this.notas;
+        return this.afDB.list('notas/');
     }
-    public createNota(nota){
-        this.notas.push(nota);
+    public getNota(id) {
+        //return this.notas.filter(function (e, i) { return e.id == id })[0] || { id: null, titulo: null, descripcion: null };
+        //return this.afDB.database.ref('notas/'+id).once('value');
+        return this.afDB.object('notas/'+id);
     }
-    public editNota(nota){
-        for(let i=0;i<this.notas.length;i++){
-            if(nota.id==this.notas[i].id){
-                this.notas[i]=nota;
+    public createNota(nota) {
+       this.afDB.database.ref('notas/'+nota.id).set(nota);
+        //this.notas.push(nota);
+    }
+    public editNota(nota) {
+        for (let i = 0; i < this.notas.length; i++) {
+            if (nota.id == this.notas[i].id) {
+                this.notas[i] = nota;
             }
         }
     }
-    public deleteNota(idnota){
-        for(let i=0;i<this.notas.length;i++){
-            if(idnota==this.notas[i].id){
-                this.notas.splice(i,1);
+    public deleteNota(idnota) {
+        for (let i = 0; i < this.notas.length; i++) {
+            if (idnota == this.notas[i].id) {
+                this.notas.splice(i, 1);
             }
         }
     }
