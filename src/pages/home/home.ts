@@ -16,5 +16,8 @@ export class HomePage {
   public goToDetalle(id){
     this.navCtrl.push(DetallePage,{id:id});    
   }
+  public createNota(){
+    this.navCtrl.push(DetallePage,{id:0});
+  }
 
 }

@@ -9,7 +9,10 @@
 <ion-content >
   <ion-list>
     <button ion-item *ngFor="let nota of notas" (click)="goToDetalle(nota.id)">
-      {{ nota.id +' '+ nota.titulo}}
+      {{nota.titulo}}
     </button>
   </ion-list>
+  <div padding>
+    <button ion-button block (click)="createNota()">Nueva nota</button>
+  </div>
 </ion-content>
