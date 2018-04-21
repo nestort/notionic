@@ -23,4 +23,11 @@ export class NotasService{
             }
         }
     }
+    public deleteNota(idnota){
+        for(let i=0;i<this.notas.length;i++){
+            if(idnota==this.notas[i].id){
+                this.notas.splice(i,1);
+            }
+        }
+    }
 }

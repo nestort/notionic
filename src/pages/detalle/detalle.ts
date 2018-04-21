@@ -28,7 +28,7 @@ export class DetallePage {
     console.log('ionViewDidLoad DetallePage');
   }
   guardarNota(){
-    if(this.nota.id!=0){
+    if(this.nota.id!= null){
       this.notasService.editNota(this.nota);
       this.showAlertCreacion('¡Nota editada!','Se ha editado con exito '+this.nota.titulo);
     }else{
@@ -39,6 +39,11 @@ export class DetallePage {
     
     this.navCtrl.pop();
     
+  }
+  eliminarNota(){
+    this.notasService.deleteNota(this.nota.id);
+    this.navCtrl.pop();
+    this.showAlertCreacion('¡Nota eliminada!','Se ha eliminado con exito '+this.nota.titulo);
   }
   showAlertCreacion(titulo,contenido) {
     let alert = this.alertCtrl.create({
